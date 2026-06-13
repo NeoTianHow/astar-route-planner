@@ -1,12 +1,12 @@
 # A* Route Planner
 
-A Flask-based journey planning prototype for selected Bas Muafakat Johor bus services, built as a CSC1108 Data Structures and Algorithms school project.
+A Flask-based journey planning application for selected Bas Muafakat Johor bus services, built as a CSC1108 Data Structures and Algorithms project at Singapore Institute of Technology.
 
 ## Overview
 
-A* Route Planner is a CSC1108 Data Structures and Algorithms school project that demonstrates how graph data structures and shortest-path search can support a real-world route planning use case.
+A* Route Planner is a CSC1108 Data Structures and Algorithms project at Singapore Institute of Technology that demonstrates how graph data structures and shortest-path search can support a real-world route planning use case.
 
-The project is based on a school assignment brief for planning journeys on selected Bas Muafakat Johor bus routes in Johor, Malaysia. Users can enter a starting location and destination, find nearby bus stops, receive a recommended route, and view the result on an interactive map.
+The application plans journeys on selected Bas Muafakat Johor bus routes in Johor, Malaysia. Users can enter a starting location and destination, find nearby bus stops, receive a recommended route, and view the result on an interactive map.
 
 The application combines nearest bus stop detection, A* shortest-route search, bus transfer handling, walking links for first-mile or last-mile connectivity, route visualisation, and optional Telegram route sharing.
 
@@ -17,8 +17,9 @@ The application combines nearest bus stop detection, A* shortest-route search, b
 - Support for bus transfers and walking segments between route legs.
 - Folium map rendering with route lines and bus stop markers.
 - User registration, login, logout, and recent search history.
-- Admin bus stop disruption management for route-planning experiments.
-- Optional Telegram delivery for generated route directions.
+- Optional TomTom traffic labels for route traffic conditions.
+- Admin disruption management to mark bus stops as unavailable during route-planning tests.
+- Optional Telegram bot sharing for sending generated route directions to a chat.
 
 ## Screenshots
 
@@ -26,25 +27,33 @@ The application combines nearest bus stop detection, A* shortest-route search, b
 
 ![Home Map](docs/assets/screenshots/home-map.png)
 
-### Search Route
+### Route Search
 
-![Search Route](docs/assets/screenshots/search-route.png)
+![Route Search](docs/assets/screenshots/route-result.png)
 
-### Route Result
+### Register
 
-![Route Result](docs/assets/screenshots/route-result.png)
+![Register](docs/assets/screenshots/register.png)
 
 ### Login
 
 ![Login](docs/assets/screenshots/login.png)
 
-### Admin Disruption
+### Recent Searches
 
-![Admin Disruption](docs/assets/screenshots/admin-disruption.png)
+![Recent Searches](docs/assets/screenshots/recent-searches.png)
 
-### Telegram Route
+### Admin Disruption Management
 
-![Telegram Route](docs/assets/screenshots/telegram-route.png)
+![Admin Disruption Management](docs/assets/screenshots/admin-disruption-added.png)
+
+### Route With Disruption
+
+![Route With Disruption](docs/assets/screenshots/route-with-disruption.png)
+
+### Telegram Bot
+
+![Telegram Bot](docs/assets/screenshots/telegram-bot.png)
 
 ## Tech Stack
 
@@ -65,7 +74,7 @@ Data and mapping:
 External services:
 
 - OpenRouteService API for geocoding and route geometry
-- TomTom Traffic API for traffic data experiments
+- TomTom Traffic API for optional traffic data experiments
 - Telegram Bot API for route delivery
 
 ## Architecture
@@ -140,7 +149,7 @@ The Flask app runs locally and serves the route planner from `/`.
 1. Open the app in a browser.
 2. Enter a starting location and destination in the route search form.
 3. Submit the search to calculate the nearest bus stops and recommended bus route.
-4. Review the route directions, estimated distance, estimated time, and map visualisation.
+4. Review the route directions, estimated distance, estimated time, optional traffic label, and map visualisation.
 5. Register or log in to save and view recent searches.
 6. Use the admin disruption page, when configured, to mark bus stops as disrupted for route-planning experiments.
 7. Use the Telegram action, when configured, to send generated route directions through a Telegram bot.
@@ -158,12 +167,12 @@ The Flask app runs locally and serves the route planner from `/`.
 
 ## Results
 
-The school project produced a working journey planning prototype for selected Bas Muafakat Johor bus services.
+The Singapore Institute of Technology project produced a working journey planning application for selected Bas Muafakat Johor bus services.
 
 - Implemented route planning from user-entered locations.
 - Applied graph data structures and A* search for path finding.
 - Visualised bus and walking routes on an interactive map.
-- Supported selected Johor bus services from the CSC1108 assignment brief.
+- Supported selected Johor bus services used in the CSC1108 project scope.
 - Added supporting features such as user accounts, recent searches, bus stop disruptions, and Telegram route sharing.
 
 ## Testing
@@ -206,4 +215,4 @@ astar-route-planner/
 - `.env.example` contains placeholders only and is safe to commit.
 - The application reads sensitive configuration from environment variables.
 - Admin access is disabled unless `ADMIN_USERNAME` and `ADMIN_PASSWORD_HASH` are configured.
-- Generated route messages may contain user-entered locations, so treat Telegram delivery as an optional local/demo feature.
+- Generated route messages may contain user-entered locations, so treat Telegram delivery as an optional sharing feature.
