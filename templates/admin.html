@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Page</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css')}}"
+    />
+    <script
+      rel="script"
+      src="{{ url_for('static', filename='scripts.js')}}"
+    ></script>
+  </head>
+  <body id="login">
+    <div id="loginForm">
+      <h1 style="color: #36454f">Admin Page</h1>
+      <label for="bus stop">Add disrupted bus stop</label>
+      <h3>
+        Disruption List: <span class="weight-normal"> {% if not disrupted_list %} NIL {%endif %} </span>
+        <div id="disruption-list">
+          {% if disrupted_list %} {% for item in disrupted_list %}
+          <button
+            class="disrupted-item"
+            data-bus-stop="{{ item }}"
+            onclick="removeDisruption('{{ item }}')"
+          >
+            {{ item }}
+            <span class="close-icon">&times;</span>
+          </button>
+          {% endfor %} {% endif %}
+        </div>
+      </h3>
+
+      {% if message %}
+      <p class="message" id="success_message" name="success_message">
+        {{ message }}
+      </p>
+      {% endif %} {% if error_message %}
+      <p class="message" id="error_message" name="error_message">
+        {{ error_message }}
+      </p>
+      {% endif %}
+
+      <form action="/disruption-bus-stop" method="POST">
+        <input
+          type="text"
+          class="lineTextField"
+          id="busstop"
+          name="busstop"
+          placeholder="Enter bus stop"
+          style="margin-bottom: 30px"
+        />
+        <input type="submit" value="Submit" />
+        <p></p>
+        <input
+          type="button"
+          value="Log Out"
+          onclick="location.href='/logout'"
+        />
+      </form>
+    </div>
+  </body>
+</html>

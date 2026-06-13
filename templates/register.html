@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css')}}"
+    />
+  </head>
+  <body id="register">
+    <div class="back">
+      <input type="button" value="Back" onclick="history.back()" />
+    </div>
+    <form id="registerForm" action="/register" method="POST">
+      <h1 style="color: #36454f">Create Account</h1>
+      {% if error_message %}
+      <p class="error_message" id="error_message">{{ error_message }}</p>
+      {% endif %}
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="lineTextField"
+        id="username"
+        name="username"
+        placeholder="Enter username"
+      />
+      <label for="name">Name</label>
+      <input
+        type="text"
+        class="lineTextField"
+        id="name"
+        name="name"
+        placeholder="Enter name"
+      />
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="lineTextField"
+        id="email"
+        name="email"
+        placeholder="Enter email"
+      />
+      <label for="password">Password</label>
+      <input
+        type="password"
+        class="lineTextField"
+        id="password"
+        name="password"
+        placeholder="Enter password"
+      />
+      <input type="submit" value="Create" />
+    </form>
+  </body>
+</html>

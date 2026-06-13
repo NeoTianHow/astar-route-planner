@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="search-container">
+      <form id="searchForm" action="/search-route" method="POST">
+        <label for="start-location">Start Location:</label>
+        <input
+          type="text"
+          id="start-location"
+          name="start-location"
+          value="{{start_location}}"
+        />
+        <button id="swap-values" type="button">Swap</button>
+        <label for="end-location">End Location:</label>
+        <input
+          type="text"
+          id="end-location"
+          name="end-location"
+          value="{{end_location}}"
+        />
+        {% if error_message != ""%}
+        <p id="error_message">{{error_message}}</p>
+        {% endif %}
+        <br />
+        <input type="submit" value="Search" />
+      </form>
+      <p></p>
+      <!-- Show login or logout button depending if user is logged in -->
+      {% if isLoggedIn == 0 %}
+      <input
+        type="button"
+        value="Login"
+        onclick="location.href='/redirect_login'"
+      />
+      {% elif isLoggedIn == 1 %}
+      <input type="button" value="Log Out" onclick="location.href='/logout'" />
+      {% endif %}
+      <!-- Show username if user is logged in -->
+      {% if isLoggedIn == 1 %}
+      <h4>Welcome {{ username }}</h4>
+      {% endif %}
+      <!-- Show Recent Search History table if user is logged in -->
+      <h5>Recent searches:</h5>
+      {% if isLoggedIn == 0 %} {{ saved_searches }} {% elif isLoggedIn == 1 %}
+      <!-- Show "no recent searches" message if user does not have any recent searches -->
+      {% if not saved_searches %} No recent searches {% else %}
+      <table>
+        <tr>
+          <th>Start</th>
+          <th>End</th>
+          <th>Action</th>
+        </tr>
+        {% for location in saved_searches %}
+        <tr>
+          <td>{{ location[0] }}</td>
+          <td>{{ location[1] }}</td>
+          <td>
+            <!-- Allow user to search route based on recent searches -->
+            <form action="/search-route" method="POST">
+              <input
+                type="hidden"
+                name="start-location"
+                value="{{ location[0] }}"
+              />
+              <input
+                type="hidden"
+                name="end-location"
+                value="{{ location[1] }}"
+              />
+              <input type="submit" value="Go" />
+            </form>
+          </td>
+        </tr>
+        {% endfor %} {% endif %} {% endif %}
+      </table>
+    </div>
+    <div id="map">{{ map_html|safe }}</div>
+    {% if route_text != "" %}
+    <div id="route">
+      <h3>
+        Route is:
+        <button
+          onclick="location.href='/send-to-telegram'"
+          class="telegram-button"
+        >
+          <i class="fa-brands fa-telegram" style="font-size: 16px"></i>
+          &nbsp;Send To Telegram
+        </button>
+      </h3>
+      {% if isLoggedIn == 1 %} {% if telegram_success_message %}
+      <p class="message" id="telegram_success_message">
+        {{ telegram_success_message }}
+      </p>
+      {% endif %} {% if message %}
+      <p class="message" id="telegram_error_message">
+        {{ telegram_error_message }}
+      </p>
+      {% endif %} {% endif %}
+      <!-- to display route directions -->
+      <p id="display-distance">Total distance: {{ total_distance }} km</p>
+      <p id="display-time">Estimated time: {{ total_time }} mins</p>
+      <p id="traffic-type">Traffic: {{ traffic_type }}</p>
+      <br />
+      {% for sentence in route_text.split('\n') %} {{ sentence.strip() }}
+      <p></p>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <script>
+      $(document).ready(function () {
+        $("#swap-values").click(function () {
+          var st = $("#start-location").val();
+          $("#start-location").val($("#end-location").val());
+          $("#end-location").val(st);
+        });
+      });
+    </script>
+  </body>
+</html>

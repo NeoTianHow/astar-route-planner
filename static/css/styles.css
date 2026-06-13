@@ -1,0 +1,312 @@
+body#login::before,
+body#register::before {
+  content: "";
+  position: fixed;
+  left: -2.5%;
+  right: 0;
+  top: -2.5%;
+  bottom: 0;
+  z-index: -1;
+  height: 105%;
+  width: 105%;
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  filter: blur(6px);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  overflow-y: hidden;
+}
+
+.back {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  width: 150px;
+}
+
+/* For login and create user form */
+#loginForm,
+#registerForm {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+  position: relative;
+  top: 80px;
+  padding: 20px;
+  margin: 50px auto;
+  max-width: 400px;
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 16px;
+  margin: 7px 0;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  width: 100%;
+  display: block;
+}
+
+input[type="password"] {
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 16px;
+  margin: 7px 0;
+  padding: 10px 0;
+  margin-bottom: 30px;
+  width: 100%;
+  display: block;
+}
+
+input[type="submit"],
+input[type="button"] {
+  background-color: #36454f;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+button.telegram-button {
+  background-color: #36454f;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  width: 200px;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button.telegram-button:hover {
+  background-color: #36454f;
+}
+
+.lineTextField:focus {
+  outline: none;
+}
+
+/* For main map.html page */
+#search-container {
+  position: absolute;
+  width: 300px;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#search-container label {
+  font-weight: bold;
+}
+
+#search-container input[type="text"] {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#search-container button {
+  display: block;
+  margin: 10px auto;
+  padding: 5px 10px;
+  background-color: #36454f;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+#error_message {
+  color: red;
+  background-color: #ffe6e6;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  border: 1px solid #ff9999;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#success_message {
+  color: green;
+  background-color: #ccffcc;
+  padding: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin: 10px 0;
+  border: 1px solid #99ff99;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#telegram_success_message {
+  color: green;
+  background-color: #ccffcc;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: absolute;
+  top: 50px;
+  right: 16px;
+  width: 200px;
+  text-align: center;
+  border: 1px solid #99ff99;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#directToLogin {
+  display: block;
+  margin: 10px auto;
+  padding: 5px 10px;
+  background-color: #36454f;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+iframe {
+  height: 100vh !important;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/* To display the route */
+#route {
+  position: absolute;
+  bottom: 10px;
+  left: 30px;
+  background-color: #d3d3d3;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+}
+
+#route h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#route p {
+  margin-bottom: 5px;
+}
+
+#route ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#route li {
+  margin-bottom: 5px;
+}
+
+#display-distance,
+#display-time,
+#traffic-type {
+  font-weight: bold;
+  color: #007fff;
+}
+
+@media only screen and (max-width: 768px) {
+  #search-container {
+    top: 10px;
+    right: 10px;
+  }
+  #route {
+    bottom: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+/* CSS for previous search history table */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 335px;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 11px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.disrupted-item {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  margin: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.close-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #721c24;
+  cursor: pointer;
+  float: right;
+}
+
+.removed {
+  display: none;
+}
+
+.weight-normal {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.image-button {
+  background-image: url("../images/telegram_icon.png");
+  background-size: cover;
+  color: white;
+  padding: 0;
+  border: none;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+
