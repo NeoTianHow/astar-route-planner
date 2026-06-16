@@ -165,16 +165,6 @@ The Flask app runs locally and serves the route planner from `/`.
 - `POST /disruption-bus-stop` - add a bus stop disruption from the admin page.
 - `DELETE /disruption-bus-stop/<param>` - remove a bus stop disruption.
 
-## Results
-
-The Singapore Institute of Technology project produced a working journey planning application for selected Bas Muafakat Johor bus services.
-
-- Implemented route planning from user-entered locations.
-- Applied graph data structures and A* search for path finding.
-- Visualised bus and walking routes on an interactive map.
-- Supported selected Johor bus services used in the CSC1108 project scope.
-- Added supporting features such as user accounts, recent searches, bus stop disruptions, and Telegram route sharing.
-
 ## Testing
 
 Run a Python syntax check:
